@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Кофейни</title>
+</head>
+<body>
+{% for place in places %}
+     {% for key,value in place.items() %}
+          <br>{{ key }} - {{ value }}</br>
+     {% endfor %}
+     <p></p>
+{% endfor %}
+</body>
+</html>
