@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+</head>
+<body>
+<div>
+    <form action="/process" method = 'GET'>
+    <div class="title-part">
+    Какой кофе вы хотите?
+        <div class="white">
+        <input type="radio" name="coffee" value="эспрессо"> эспрессо
+        <input type="radio" name="coffee" value="латте"> латте
+        <input type="radio" name="coffee" value="американо"> американо
+        <input type="radio" name="coffee" value="раф"> раф
+        <input type="radio" name="coffee" value="капучино"> капучино
+        <input type="radio" name="coffee" value="флэт уайт"> флэт уайт
+        <input type="radio" name="coffee" value="мокко"> мокко
+        <input type="radio" name="coffee" value="любой" checked> любой
+    </div>
+        <div class="title-part">
+    Сколько вы за него готовы заплатить?
+    <div>
+        <input class="text" type="number" name="price" required placeholder="300">
+    </div>
+    <div class="title-part">
+    Сколько минут вы готовы добираться до кофейни?
+    </div>
+        <input class="text" type="number" name="time" required placeholder="30">
+    <input type="submit" value="Подобрать кофейню">
+</form>
+</body>
+</html>
