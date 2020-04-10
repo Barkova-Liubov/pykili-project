@@ -21,7 +21,6 @@ def filter(coffee, price, time):
             if int(cafe['добираться']) <= int(time):
                 required_cafes.append(cafe)
     else:
-        i = 0
         for cafe in ALL_CAFES:
             for key in cafe:
                 if key == 'эспрессо' or key == 'латте' or key == 'раф' or key == 'американо' or key == 'капучино' or key == 'флэт уайт' or key == 'мокко':
@@ -38,21 +37,26 @@ def filter(coffee, price, time):
                 required_cafes.append(cafe)
     return required_cafes
 
-def list_creator(required_cafes):
+def list_creator(required_cafes, coffee):
     cafes_for_html = []
     for required_cafe in required_cafes:
         cafe_for_html = OrderedDict( required_cafe )
         cafes_for_html.append( cafe_for_html )
 
-    for OrDi in cafes_for_html:
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
-        OrDi.popitem( last=True )
+    if coffee == 'любой':
+        for OrDi in cafes_for_html:
+            OrDi.popitem( last=True )
+    else:
+        for OrDi in cafes_for_html:
+            OrDi.move_to_end( coffee, last=False )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.popitem( last=True )
+            OrDi.move_to_end( coffee, last=True )
 
     for OrDi in cafes_for_html:
         for key in OrDi:
@@ -64,6 +68,19 @@ def list_creator(required_cafes):
                     OrDi[key] = OrDi[key] + ' минуту'
                 else:
                     OrDi[key] = OrDi[key] + ' минут'
+
+    for OrDi in cafes_for_html:
+        for key in OrDi:
+            if key == 'эспрессо' or key == 'латте' or key == 'раф' or key == 'американо' or key == 'капучино'\
+            or key == 'флэт уайт' or key == 'мокко':
+                if not OrDi[key] == 'нет':
+                    if OrDi[key].endswith( '2' ) and not OrDi[key].startswith( '1' ) or OrDi[key].endswith('3' ) \
+                    and not OrDi[key].startswith( '1' ) or OrDi[key].endswith( '4' ) and not OrDi[key].startswith('1' ):
+                        OrDi[key] = OrDi[key] + ' рубля'
+                    elif OrDi[key].endswith( '1' ) and not OrDi[key].startswith( '1' ):
+                        OrDi[key] = OrDi[key] + ' рубль'
+                    else:
+                        OrDi[key] = OrDi[key] + ' рублей'
     return cafes_for_html
 
 app = Flask(__name__)
@@ -78,7 +95,7 @@ def where_to_go():
         data = file.read()
     coffee,price,time = data.split('\n')
     required_cafes = filter(coffee,price,time)
-    cafes_for_html = list_creator(required_cafes)
+    cafes_for_html = list_creator(required_cafes,coffee)
     if cafes_for_html == []:
         sad_news = 'К сожалению, мы не нашли для вас подходящих кофеен'
     return render_template('cafes.html', places = cafes_for_html, sad_news = sad_news)
