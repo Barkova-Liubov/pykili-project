@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>КофеСерчер</title>
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+     <link rel="stylesheet" type="text/css" href="css/main.css">
+
+     <style>
+      body {
+        background-color: black;
+              }
+
+      INPUT[type="number"] {
+    color: white;
+   }
+
+      </style>
+
+  </head>
+
+
+  <body>
+
+    <div class="container">
+      <form action="/process" method = 'GET'>
+      <div class="options" align="center" style="background-color: black">
+          <br>
+          <h2 style="color: white">Я ХОЧУ</h2>
+          <br>
+
+
+          <div class="white">
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="эспрессо">
+              <label for="radio" h5 style="color: #8B4513"> эспрессо</label>
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="латте">
+              <label for="radio" h5 style="color: #8B4513">     латте</label>
+          <br><br>
+
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="американо">
+              <label for="radio" h5 style="color: #8B4513">американо</label>
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="раф">
+              <label for="radio"h5 style="color: #8B4513">раф</label>
+          <br> <br>
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="капучино">
+              <label for="radio" h5 style="color: #8B4513"> капучино</label>
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="флэт уайт">
+              <label for="radio" h5 style="color: #8B4513">флэт уайт</label>
+          <br> <br>
+
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="мокко">
+              <label for="radio"h5 style="color: #8B4513">мокко</label>
+          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="любой" checked>
+              <label for="radio" h5 style="color: #8B4513">любой</label>
+          </div>
+
+          <br>
+          <br>
+
+      </div>
+
+      <div class="question1" align="center" style="background-color: black">
+
+          <h2 style="color: white">Я ГОТОВ ЗАПЛАТИТЬ</h2>
+          <br>
+
+          <div class="col-md-4 mb-3">
+          <p><input class="form-control" id="exampleFormControlInput1" type="number" name="price" style="background-color: black" required placeholder="300" ></p>
+          </div>
+
+          <div><h5 style="color: #8B4513">рублей</h5>
+          </div>
+          <br><br>
+      </div>
+
+
+      <div class="question2" align="center" style="background-color: black">
+
+          <h2 style="color: white">Я ПОТРАЧУ НА ДОРОГУ</h2>
+          <br>
+          <div class="col-md-4 mb-3">
+          <p><input class="form-control" id="exampleFormControlInput1" type="number" name="time" required placeholder="30" style="background-color: black"></p>
+          </div>
+
+          <div> <h5 style="color: #8B4513">минут</h5>
+          </div>
+
+          <br>  <br> <br>
+
+      </div>
+      <div class="wrapper" align="center" style="background-color: black">
+        <br>
+        <input  class="btn btn-dark" style="background-color: #8B4513" type="submit" value="Найти кофейню">
+        <br>
+        <br>
+      </div>
+
+      </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>
