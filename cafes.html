@@ -20,19 +20,17 @@
 
 		<div class="header" align="center">
 			<br>
-			<h1 style="color: #8B4513">НАЙДЕННЫЕ КОФЕЙНИ</h1>
+			<h1 style="color: #8B4513">ВОТ КУДА ВЫ МОЖЕТЕ ПОЙТИ</h1>
 			<br>
 		</div>
 
 		<div class="results" align="center" style="color: white">
 			{{sad_news}}
 
-		{% for place in places %}
-     		{% for key,value in place.items() %}
+			{% for key,value in place.items() %}
           		<br>{{ key }} : {{ value }}</br>
      		{% endfor %}
      		<p></p>
-		{% endfor %}
 		</div>
 
 		<div class="button" align="center" style="background-color: black">
