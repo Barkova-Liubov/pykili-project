@@ -81,7 +81,7 @@ def comments (fin_dict):
     for key in fin_dict:
         if key == 'эспрессо' or key == 'латте' or key == 'раф' or key == 'американо' or key == 'капучино' \
             or key == 'флэт уайт' or key == 'мокко':
-            if not fin_dict[key] == None:
+            if not fin_dict[key] == 'нет':
                 if fin_dict[key].endswith( '2' ) and not fin_dict[key].startswith( '1' ) or fin_dict[key].endswith( '3' ) \
                     and not fin_dict[key].startswith( '1' ) or fin_dict[key].endswith( '4' ) and not fin_dict[
                 key].startswith \
