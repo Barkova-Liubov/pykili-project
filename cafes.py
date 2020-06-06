@@ -2,8 +2,6 @@ from flask import Flask, render_template, redirect, url_for, request
 from csv import DictReader
 from random import choice
 
-KEY_SET = {'название','открытие','закрытие','адрес','добираться'}
-
 def filter(coffee, price, time):
     all_cafes = list( DictReader( open( 'project.csv', encoding='utf-8' ) ) )
     for cafe in all_cafes:
@@ -44,34 +42,28 @@ def filter(coffee, price, time):
                 required_cafes.append(cafe)
     return required_cafes
 
-def list_creator(required_cafes, coffee):
-    KEY_SET.add(coffee)
-    cafes_for_html = []
+def dic_creator(Di, coffee, key_set = {'название','открытие','закрытие','адрес','добираться'}):
+    key_set.add(coffee)
 
     if not coffee == 'любой':
-        for Di in required_cafes:
-            the_keys = set( Di.keys() ).difference( KEY_SET )
-            for the_key in the_keys:
-                 Di.pop( the_key )
-        cafes_for_html = required_cafes
+        the_keys = set( Di.keys() ).difference( key_set )
+        for the_key in the_keys:
+            Di.pop( the_key )
     else:
-        for required_cafe in required_cafes:
-            required_cafe.pop('любой')
-            cafes_for_html.append(required_cafe)
+        Di.pop('любой')
 
 
-    for Di in cafes_for_html:
-        for key in Di:
-            if key == 'эспрессо' or key == 'латте' or key == 'раф' or key == 'американо' or key == 'капучино'\
-            or key == 'флэт уайт' or key == 'мокко':
-                if  Di[key] == None:
-                    Di[key] = 'нет'
-    KEY_SET.remove(coffee)
-    return cafes_for_html
+    for key in Di:
+        if key == 'эспрессо' or key == 'латте' or key == 'раф' or key == 'американо' or key == 'капучино'\
+        or key == 'флэт уайт' or key == 'мокко':
+            if  Di[key] == None:
+                Di[key] = 'нет'
+    key_set.remove(coffee)
+    return Di
 
-def chooser(cafes_for_html):
-    fin_dict = choice(cafes_for_html)
-    return fin_dict
+def chooser(required_cafes):
+    Di = choice(required_cafes)
+    return Di
 
 def comments (fin_dict):
     for key in fin_dict:
@@ -102,6 +94,7 @@ def comments (fin_dict):
     return fin_dict
 app = Flask(__name__)
 
+
 @app.route('/')
 def page_with_questions():
     return render_template('questions.html')
@@ -109,15 +102,17 @@ def page_with_questions():
 @app.route('/cafes')
 def where_to_go():
     sad_news = ''
-    with open('help.txt',encoding='utf-8') as file:
+    with open('help.txt', encoding='utf-8') as file:
         data = file.read()
     coffee,price,time = data.split('\n')
     required_cafes = filter(coffee,price,time)
-    cafes_for_html = list_creator(required_cafes,coffee)
-    fin_dict = chooser(cafes_for_html)
-    fin_dict = comments(fin_dict)
-    if cafes_for_html == []:
+    if required_cafes == []:
         sad_news = 'К сожалению, мы не нашли для вас подходящих кофеен'
+        fin_dict = {}
+    else:
+        Di = chooser(required_cafes)
+        Di = dic_creator(Di,coffee)
+        fin_dict = comments(Di)
     return render_template('cafes.html', place = fin_dict, sad_news = sad_news)
 
 @app.route('/process', methods=['get'])
