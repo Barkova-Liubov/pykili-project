@@ -2,108 +2,275 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>КофеСерчер</title>
+ <style>
 
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  	@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 
-     <link rel="stylesheet" type="text/css" href="css/main.css">
+:root {
+	--white: #ffffff;
+	--light: #f0eff3;
+	--black: #000000;
+	--dark-blue: #1f2029;
+	--dark-light: #353746;
+	--red: #da2c4d;
+	--yellow: #f8ab37;
+	--grey: #ecedf3;
+}
 
-     <style>
-      body {
-        background-color: black;
-              }
 
-      INPUT[type="number"] {
-    color: white;
-   }
+body{
+	width: 100%;
+	background: var(--dark-blue);
+	overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+	font-size: 17px;
+	line-height: 30px;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+p{
+    font-family: 'Poppins', sans-serif;
+	font-size: 17px;
+	line-height: 30px;
+	color: var(--white);
+	letter-spacing: 2px;
+	font-weight: 500;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+::selection {
+	color: var(--white);
+	background-color: var(--black);
+}
+::-moz-selection {
+	color: var(--white);
+	background-color: var(--black);
+}
+mark{
+	color: var(--white);
+	background-color: var(--black);
+}
+.section {
+    position: relative;
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+}
+.over-hide {
+    overflow: hidden;
+}
+.z-bigger {
+    z-index: 100 !important;
+}
 
-      </style>
+.button:active, .button:focus {
+  outline: none !important;
+}
+.button::-moz-focus-inner {
+  border: 0 !important;
+}
 
+
+.background-color{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--dark-blue);
+	z-index: 1;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked){
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+
+.checkbox-tools:checked + label,
+.checkbox-tools:not(:checked) + label{
+	position: relative;
+	display: inline-block;
+	padding: 20px;
+	width: 110px;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 1px;
+	margin: 0 auto;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	overflow: hidden;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: var(--white);
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+
+
+.button:not(:checked) + label{
+	background-color: var(--dark-light);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.checkbox-tools:not(:checked) + label{
+	background-color: var(--dark-light);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.checkbox-tools:checked + label{
+	background-color: transparent;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.button + label:hover{
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.checkbox-tools:not(:checked) + label:hover{
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.button + label::before,
+.checkbox-tools:checked + label::before,
+.checkbox-tools:not(:checked) + label::before{
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background-image: linear-gradient(298deg, var(--red), var(--yellow));
+	z-index: -1;
+}
+
+.button:checked,
+.checkbox:checked ~ .section .container .row .col-12 .checkbox-tools:not(:checked) + label{
+	background-color: var(--light);
+	color: var(--dark-blue);
+	box-shadow: 0 1x 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.form-control {
+            width: 70%;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid;
+            padding: 1em 0 .8em;
+            text-align: center;
+            font-size: 22px;
+            font-family: inherit;
+            font-weight: 300;
+            line-height: 1.5;
+            color: white;
+            outline: none;
+            &::placeholder {
+                color: hsla(0, 0%, 100%, 0.5);
+            }
+        }
+.button {
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 2px 20px -5px grey;
+  border-radius: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-image: linear-gradient(298deg, var(--red), var(--yellow));
+ }
+
+</style>>
   </head>
-
-
   <body>
 
-    <div class="container">
-      <form action="/process" method = 'GET'>
-      <div class="options" align="center" style="background-color: black">
-          <br>
-          <h2 style="color: white">Я ХОЧУ</h2>
-          <br>
 
-
-          <div class="white">
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="эспрессо">
-              <label for="radio" h5 style="color: #8B4513"> эспрессо</label>
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="латте">
-              <label for="radio" h5 style="color: #8B4513">     латте</label>
-          <br><br>
-
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="американо">
-              <label for="radio" h5 style="color: #8B4513">американо</label>
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="раф">
-              <label for="radio"h5 style="color: #8B4513">раф</label>
-          <br> <br>
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="капучино">
-              <label for="radio" h5 style="color: #8B4513"> капучино</label>
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="флэт уайт">
-              <label for="radio" h5 style="color: #8B4513">флэт уайт</label>
-          <br> <br>
-
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="мокко">
-              <label for="radio"h5 style="color: #8B4513">мокко</label>
-          <input class="btn btn-dark" style="background-color: #8B4513" type="radio" name="coffee" value="любой" checked>
-              <label for="radio" h5 style="color: #8B4513">любой</label>
-          </div>
-
-          <br>
-          <br>
-
-      </div>
-
-      <div class="question1" align="center" style="background-color: black">
-
-          <h2 style="color: white">Я ГОТОВ ЗАПЛАТИТЬ</h2>
-          <br>
-
-          <div class="col-md-4 mb-3">
-          <p><input class="form-control" id="exampleFormControlInput1" type="number" name="price" style="background-color: black" required placeholder="300" ></p>
-          </div>
-
-          <div><h5 style="color: #8B4513">рублей</h5>
-          </div>
-          <br><br>
-      </div>
-
-
-      <div class="question2" align="center" style="background-color: black">
-
-          <h2 style="color: white">Я ПОТРАЧУ НА ДОРОГУ</h2>
-          <br>
-          <div class="col-md-4 mb-3">
-          <p><input class="form-control" id="exampleFormControlInput1" type="number" name="time" required placeholder="30" style="background-color: black"></p>
-          </div>
-
-          <div> <h5 style="color: #8B4513">минут</h5>
-          </div>
-
-          <br>  <br> <br>
-
-      </div>
-      <div class="wrapper" align="center" style="background-color: black">
-        <br>
-        <input  class="btn btn-dark" style="background-color: #8B4513" type="submit" value="Найти кофейню">
-        <br>
-        <br>
-      </div>
-
-      </form>
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+<div class="section over-hide z-bigger">
+		<div class="section over-hide z-bigger">
+			<div class="container pb-5">
+				<form action="/process" method = 'GET'>
+				<div class="row justify-content-center pb-5">
+					<div class="col-12 pt-5">
+						<p class="mb-4 pb-2">Я ХОЧУ</p>
+					</div>
+					<div class="col-12 pb-5">
+						<input class="checkbox-tools" type="radio" name="coffee" id="tool-1" value="эспрессо">
+						<label class="for-checkbox-tools" for="tool-1">
+							<i class='uil uil-эспрессо'></i>
+							эспрессо
+						</label><!--
+						--><input class="checkbox-tools" type="radio" name="coffee" id="tool-2" value="латте">
+						<label class="for-checkbox-tools" for="tool-2">
+							<i class='uil uil-латте'></i>
+							латте
+						</label><!--
+						--><input class="checkbox-tools" type="radio" name="coffee" id="tool-3" value="американо">
+						<label class="for-checkbox-tools" for="tool-3">
+							<i class='uil uil-американо'></i>
+							американо
+						</label><!--
+						--><input class="checkbox-tools" type="radio" name="coffee" id="tool-4" value="капучино">
+						<label class="for-checkbox-tools" for="tool-4">
+							<i class='uil uil-капучино'></i>
+							капучино
+						</label><!--
+						--><input class="checkbox-tools" type="radio" name="coffee" id="tool-5" value="мокко">
+						<label class="for-checkbox-tools" for="tool-5">
+							<i class='uil uil-мокко'></i>
+							мокко
+						</label>
+						   <input class="checkbox-tools" type="radio" name="coffee" id="tool-6" value="раф">
+						<label class="for-checkbox-tools" for="tool-6">
+							<i class='uil uil-раф'></i>
+							раф
+						</label><!--
+						--><input class="checkbox-tools" type="radio" name="coffee" id="tool-7" value="любой" checked>
+						<label class="for-checkbox-tools" for="tool-7">
+							<i class='uil uil-любой'></i>
+							любой
+						</label>
+					</div>
+					<br>
+					<div class="col-12 pt-5">
+						<p class="mb-4 pb-2">Я ГОТОВ ЗАПЛАТИТЬ </p>
+					</div>
+					<div class="col-12 pt-5">
+						<input class="form-control" id="exampleFormControlInput1" type="number" name="price" required placeholder="300">
+						<p>рублей</p>
+					</div>
+					<br>
+					<div class="col-12 pt-5">
+						<p class="mb-4 pb-2">Я БУДУ В ПУТИ</p>
+					</div>
+					<div>
+						<input class="form-control" id="exampleFormControlInput1" type="number" name="time" required placeholder="30">
+						<p>минут</p>
+					</div>
+					<br>
+					<div class="col-12 pt-5">
+						<input  class="button" type="submit" value="Найти кофейню">
+					</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			</div>
+		</div>
+	</body>
+	</html>
