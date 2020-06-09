@@ -1,17 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>Кофейни</title>
+ <style>
+
+  	@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+
+
+:root {
+	--white: #ffffff;
+	--light: #f0eff3;
+	--black: #000000;
+	--dark-blue: #1f2029;
+	--dark-light: #353746;
+	--red: #da2c4d;
+	--yellow: #f8ab37;
+	--grey: #ecedf3;
+}
+
+
+body{
+	width: 100%;
+	background: var(--dark-blue);
+	overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+	font-size: 17px;
+	line-height: 30px;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+p{
+    font-family: 'Poppins', sans-serif;
+	font-size: 17px;
+	line-height: 30px;
+	color: white;
+	letter-spacing: 1px;
+	font-weight: 500;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear;
+}
+
+
+
+.section {
+    position: relative;
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+}
+.over-hide {
+    overflow: hidden;
+}
+.z-bigger {
+    z-index: 100 !important;
+}
+
+.table {
+     width: 50%;
+     max-width: 50%;
+     background-color: transparent;
+     font-family: 'Poppins', sans-serif;
+     color: white;
+ }
+</style>
 </head>
 <body>
-{{sad_news}}
+	<div class="section over-hide z-bigger">
+		<div class="container pb-5">
+			<div class="row justify-content-center pb-5">
+				<div class="col-12 pt-5">
+					<p class="mb-4 pb-2">ВОТ КУДА ВЫ МОЖЕТЕ ПОЙТИ</p>
+				</div>
+				<div class="col-12 pb-5">
+					{{sad_news}}
 
-{% for place in places %}
-     {% for key,value in place.items() %}
-          <br>{{ key }} - {{ value }}</br>
-     {% endfor %}
-     <p></p>
-{% endfor %}
+					<table align="center" >
+      					{% for key,value in place.items() %}
+              				<tr><td>{{ key }} </td><td>{{ value }}</td></tr>
+        				{% endfor %}
+					</table>
+				</div>
+			</div>
+	    </div>>
+    </div>
 </body>
 </html>
